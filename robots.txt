@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://gergomotyovszki.github.io/sitemap.xml
