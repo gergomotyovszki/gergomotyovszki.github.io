@@ -48,7 +48,12 @@
   <!-- Entry bib key -->
   <div id="{{ entry.key }}" class="{% if site.enable_publication_thumbnails %}col-sm-8{% else %}col-sm-10{% endif %}">
     <!-- Title -->
-    <div class="title">{{ entry.title }}</div>
+    <div class="title">
+        {{ entry.title }}.
+        {% if entry.year %}
+          <span class="year"> ({{ entry.year }})</span>
+        {% endif %}
+      </div>
     <!-- Author -->
     <div class="author">
       {% assign author_array_size = entry.author_array | size %}
@@ -149,23 +154,28 @@
     </div>
 
     <!-- Journal/Book title and date -->
-    {% assign proceedings = 'inproceedings,incollection' | split: ',' %}
-    {% assign thesis = 'thesis,mastersthesis,phdthesis' | split: ',' %}
-    {% if entry.type == 'article' %}
+    {% if entry.journal %}
       {% capture entrytype %}<em>{{ entry.journal }}</em>{% endcapture %}
-    {% elsif proceedings contains entry.type %}
+    {% elsif entry.booktitle %}
       {% capture entrytype %}<em>In {{ entry.booktitle }}</em>{% endcapture %}
-    {% elsif thesis contains entry.type %}
+    {% elsif entry.school %}
       {% capture entrytype %}<em>{{ entry.school }}</em>{% endcapture %}
+    {% elsif entry.institution %}
+      {% capture entrytype %}<em>{{ entry.institution }}</em>{% endcapture %}
     {% else %}
       {% capture entrytype %}{% endcapture %}
     {% endif %}
+
+    {% assign entrymonth = "" %}
+    {% assign entryyear  = "" %}
+
     {% if entry.month %}
-      {% capture entrymonth %}{{ " " }}{{ entry.month | capitalize }}{% endcapture %}
+        {% capture entrymonth %}{{ " " }}{{ entry.month | capitalize }}{% endcapture %}
     {% endif %}
     {% if entry.year %}
-      {% capture entryyear %}{{ " " }}{{ entry.year }}{% endcapture %}
+        {% capture entryyear %}{{ " " }}{{ entry.year }}{% endcapture %}
     {% endif %}
+
     {% if entry.location %}
       {% capture entrytype %}{{ entrytype }}{{ ", " }}{{ entry.location }}{% endcapture %}
     {% endif -%}
@@ -181,9 +191,11 @@
     <div class="periodical">
       {{ periodical | strip }}
     </div>
+    {% if entry.note %}
     <div class="periodical">
-      {{ entry.note | strip }}
+        {{ entry.note | markdownify | strip | remove: '<p>' | remove: '</p>' }}
     </div>
+    {% endif %}
 
     <!-- Links/Buttons -->
     <div class="links">
@@ -194,6 +206,38 @@
       {% endif %}
       {% if entry.abstract %}
         <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
+      {% endif %}
+      {% if entry.pdf %}
+        {%- assign pdfs = entry.pdf | split: '|' -%}
+        {%- assign labels_raw = entry.pdflabel | default: "" -%}
+        {%- assign labels = labels_raw | split: '|' -%}
+      
+        {%- for raw_pdf in pdfs -%}
+          {%- assign pdf_item = raw_pdf | strip -%}
+          {%- if pdf_item != "" -%}
+            {%- assign idx = forloop.index0 -%}
+            {%- assign raw_label = labels[idx] | default: "" -%}
+            {%- assign label = raw_label | strip | default: "PDF" -%}
+      
+            {%- if pdf_item contains '://' -%}
+              <a href="{{ pdf_item }}"
+                 class="btn btn-sm z-depth-0"
+                 role="button"
+                 target="_blank"
+                 rel="noopener">
+                {{ label }}
+              </a>
+            {%- else -%}
+              <a href="{{ pdf_item | prepend: '/assets/pdf/' | relative_url }}"
+                 class="btn btn-sm z-depth-0"
+                 role="button"
+                 target="_blank"
+                 rel="noopener">
+                {{ label }}
+              </a>
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
       {% endif %}
       {% if entry.doi %}
         <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button">DOI</a>
@@ -210,14 +254,7 @@
         {% else %}
           <a href="{{ entry.html | prepend: '/assets/html/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
         {% endif %}
-      {% endif %}
-      {% if entry.pdf %}
-        {% if entry.pdf contains '://' %}
-          <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
-        {% else %}
-          <a href="{{ entry.pdf | prepend: '/assets/pdf/' | relative_url }}" class="btn btn-sm z-depth-0" role="button">PDF</a>
-        {% endif %}
-      {% endif %}
+      {% endif %}      
       {% if entry.supp %}
         {% if entry.supp contains '://' %}
           <a href="{{ entry.supp }}" class="btn btn-sm z-depth-0" role="button">Supp</a>
@@ -251,7 +288,21 @@
         {% endif %}
       {% endif %}
       {% if entry.website %}
-        <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button">Website</a>
+        {%- assign sites = entry.website | split: '|' -%}
+        {%- assign labels_raw = entry.weblabel | default: "" -%}
+        {%- assign labels = labels_raw | split: '|' -%}
+      
+        {%- for raw_site in sites -%}
+          {%- assign site = raw_site | strip -%}
+          {%- if site != "" -%}
+            {%- assign idx = forloop.index0 -%}
+            {%- assign raw_label = labels[idx] | default: "" -%}
+            {%- assign label = raw_label | strip | default: "Website" -%}
+            <a href="{{ site }}" class="btn btn-sm z-depth-0" role="button">
+              {{ label }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
       {% endif %}
     </div>
     {% if site.enable_publication_badges %}
