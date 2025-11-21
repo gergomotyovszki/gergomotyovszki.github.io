@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-research",
           title: "research",
-          description: "Ideas-RePEc.",
+          description: "See also: [Ideas-RePEc],  [Google Scholar], [ORCID], [VoxEU], [ResearchGate], [Academia.edu].",
           section: "Navigation",
           handler: () => {
             window.location.href = "/research/";
