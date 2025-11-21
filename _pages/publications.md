@@ -2,7 +2,7 @@
 layout: page
 permalink: /research/
 title: research
-description: <a href='https://ideas.repec.org/f/pmo1161.html'>Ideas-RePEc</a>. 
+description: <a href='https://ideas.repec.org/f/pmo1161.html'>[Ideas-RePEc]</a>, . 
 nav: true
 nav_order: 1
 ---

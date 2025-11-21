@@ -29,12 +29,12 @@ latest_posts:
 
 I am an economist at the European Commission's DG ECFIN, working on macroeconomic modelling. I defended my PhD at the Department of Economics of the <a href="https://www.eui.eu/en/academic-units/department-of-economics" target="_blank">European University Institute</a> in Florence, Italy.
 
-My research interests lie in the fields of Monetary Economics and International Macroeconomics, focusing on the interaction of monetary-fiscal policies and household heterogeneity in open economies and currency unions.
+My research interests center on monetary–fiscal policies and international macroeconomics, with a focus on how macroeconomic policies interact with household heterogeneity in open economies and currency unions.
 
 Prior to my PhD, I worked at the monetary strategy division of the central bank of Hungary, as well as at OGResearch, a macroeconomic consultancy involved in macro forecasting for developing countries. I have spent my PhD internships at the Bank of England and the European Central Bank, and I was a visiting researcher at the University College London.
 
 I hold an MA degree in Economics from the Central European University in Budapest. I spent an Erasmus semester attending Macroeconomics courses at the Universiteit van Amsterdam. I was also a member of the Rajk College in Budapest during my university studies. 
 
-You can find my research [here](/research/), and can download my CV <a href="/assets/pdf/cv_motyo.pdf" target="_blank">here</a>.
+You can find my research [here](/research/), and download <a href="/assets/pdf/cv_motyo.pdf" target="_blank">my CV here</a>.
 
 Disclaimer: The views expressed on this website are my own and should not be attributed to the European Commission.

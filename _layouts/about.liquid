@@ -65,12 +65,12 @@ layout: default
     {% endif %}
 
     <!-- Social -->
-    {% if page.social %}
-      <div class="social">
-        <div class="contact-icons">{% include social.liquid %}</div>
-
-        <div class="contact-note">{{ site.contact_note }}</div>
-      </div>
+    {% if page.social and site.enable_navbar_social != true %}
+        <div class="social">
+            <div class="contact-icons">{% include social.liquid %}</div>
+        
+            <div class="contact-note">{{ site.contact_note }}</div>
+        </div>
     {% endif %}
 
     {% if site.newsletter and site.newsletter.enabled and site.footer_fixed %}
