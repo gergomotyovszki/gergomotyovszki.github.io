@@ -12,3 +12,12 @@
   height: 3rem;
   font-size: 3rem;  /* for <i> font icons */
 }
+
+/* Brighten publication section headings */
+.publications h2.bibliography {
+    color: var(--global-text-color) !important;
+    opacity:0.8;
+    border-top: 1px solid var(--global-text-color) !important; /* optional */
+    text-align: right !important;  /* optional */
+    font-size: 1.8rem;
+  }
