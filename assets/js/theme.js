@@ -2,15 +2,13 @@
 
 // Toggle through light, dark, and system theme settings.
 let toggleThemeSetting = () => {
-  let themeSetting = determineThemeSetting();
-  if (themeSetting == "system") {
-    setThemeSetting("light");
-  } else if (themeSetting == "light") {
-    setThemeSetting("dark");
-  } else {
-    setThemeSetting("system");
-  }
-};
+    let themeSetting = determineThemeSetting();
+    if (themeSetting == "dark") {
+      setThemeSetting("light");
+    } else {
+      setThemeSetting("dark");
+    }
+  };
 
 // Change the theme setting and apply the theme.
 let setThemeSetting = (themeSetting) => {
@@ -256,7 +254,7 @@ let transTheme = () => {
 let determineThemeSetting = () => {
   let themeSetting = localStorage.getItem("theme");
   if (themeSetting != "dark" && themeSetting != "light" && themeSetting != "system") {
-    themeSetting = "system";
+    themeSetting = "dark";
   }
   return themeSetting;
 };
