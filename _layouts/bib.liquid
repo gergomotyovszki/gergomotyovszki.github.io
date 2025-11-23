@@ -212,9 +212,7 @@
           {%- if entry.award_name %}{{ entry.award_name }}{% else %}Awarded{% endif -%}
         </a>
       {% endif %}
-      {% if entry.abstract %}
-        <a class="abstract btn btn-sm z-depth-0" role="button">Abs</a>
-      {% endif %}
+      
       {% if entry.pdf %}
         {%- assign pdfs = entry.pdf | split: '|' -%}
         {%- assign labels_raw = entry.pdflabel | default: "" -%}
@@ -311,6 +309,9 @@
             </a>
           {%- endif -%}
         {%- endfor -%}
+      {% endif %}
+      {% if entry.abstract %}
+        <a class="abstract btn btn-sm z-depth-0" role="button">Abstract</a>
       {% endif %}
     </div>
     {% if site.enable_publication_badges %}
