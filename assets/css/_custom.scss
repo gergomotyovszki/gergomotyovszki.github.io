@@ -21,3 +21,14 @@
     text-align: right !important;  /* optional */
     font-size: 1.8rem;
   }
+
+/* Shrink publication preview images on mobile */
+@media (max-width: 576px) {
+    .bibliography .preview,
+    .publications .preview {
+      max-height: 100px;   /* adjust to taste */
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+  }
