@@ -304,9 +304,23 @@
             {%- assign idx = forloop.index0 -%}
             {%- assign raw_label = labels[idx] | default: "" -%}
             {%- assign label = raw_label | strip | default: "Website" -%}
-            <a href="{{ site }}" class="btn btn-sm z-depth-0" role="button">
-              {{ label }}
-            </a>
+            {%- if site contains '://' -%}
+              <a href="{{ site }}"
+                 class="btn btn-sm z-depth-0"
+                 role="button"
+                 target="_blank"
+                 rel="noopener">
+                {{ label }}
+              </a>
+            {%- else -%}
+              <a href="{{ site | prepend: '/assets/pdf/' | relative_url }}"
+                 class="btn btn-sm z-depth-0"
+                 role="button"
+                 target="_blank"
+                 rel="noopener">
+                {{ label }}
+              </a>
+            {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
       {% endif %}
